@@ -18,5 +18,10 @@ namespace MenuShell.Domain
             Password = password;
             Role = role;
         }
+
+        public override string ToString()
+        {
+            return UserName + Password + Role;
+        }
     }
 }

@@ -39,7 +39,6 @@ namespace MenuShell.View
                     Console.WriteLine(user.Value.UserName);
                     Inlist = true;
                     
-                    
                 }
                 if (!Inlist)
                 {
@@ -50,30 +49,38 @@ namespace MenuShell.View
                     upp.Display();
                 }
 
-                Console.Write("Delete>");
+                Console.Write("\nSelect user> ");
                 var choice = Console.ReadLine();
 
-                Console.WriteLine($"\nDelete user {choice} ? (D)elete");
+                Console.WriteLine($"\n(D)elete or (V)iew user {choice} ? ");
 
                 var presKey = Console.ReadKey();
 
                 if (presKey.Key == ConsoleKey.D)
                 {
-
-
+                    
                     Console.Clear();
                     if (_users.ContainsKey(choice))
                     {
                         _users.Remove(choice);
                     }
 
+                    Console.WriteLine($"User {choice} successfully deleted");
                     Thread.Sleep(1500);
-                    
 
                 }
-                
+                if (presKey.Key == ConsoleKey.V)
+                {
 
-
+                    Console.Clear();
+                    if (_users.ContainsKey(choice))
+                    {
+                        var value = _users[choice];
+                        Console.WriteLine( choice + " " + " " + value);
+                        Console.ReadKey();
+                    }
+        
+                }
 
             } while (run);
         }
