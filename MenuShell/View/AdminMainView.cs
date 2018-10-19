@@ -20,8 +20,8 @@ namespace MenuShell.View
             Console.Clear();
             Console.WriteLine("# Main menu\n");
             Console.WriteLine("1 Add Users");
-            Console.WriteLine("2 Delete Users");
-            Console.WriteLine("3 Search users");
+            Console.WriteLine("2 Delete Users - MenuShell 1.0");
+            Console.WriteLine("3 Search users - MenuShell 1.1");
             Console.WriteLine("4 Exit");
 
             var consoleKeyInfo = Console.ReadKey(true);
