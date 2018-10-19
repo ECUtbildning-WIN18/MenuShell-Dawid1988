@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MenuShell.Domain;
+﻿using System.Collections.Generic;
+using MenuShell.Services;
 using MenuShell.View;
 
 namespace MenuShell
@@ -12,31 +8,28 @@ namespace MenuShell
     {
         static void Main(string[] args)
         {
+            var userService = new FakeUserService();
 
+            var users = userService.LoadUsers();
 
-            //var users = new Dictionary<string, Users>
+            var authenticationService = new AuthenticationService(users);
 
-            //var loginView = new LoginView(users);
+            var login = new LogInView(authenticationService);
 
-            //var validUser = loginView.Display();
+            login.Display();
 
-            //if (validUser.Role == "Administrator")
+            
+            var admin = new AdminMainView(users);
 
-
-
-
-
-
-            //LogInView.LoginDisplay();
-
-            //ReceptView.Display();
-
-            //SystemAdminView.AdminDisplay();
-;
-            //ManagingUsersView.AdminDisplay();
-
+                admin.Display();
+            
+            
+            
+            // TODO: Flytta in i AdminMainView
+            //var add = new AddUserView(users);
+            //var delete = new DeleteUserView();
+            //add.Display();
+            //delete.Display();            
         }
-
-       
     }
 }
