@@ -29,13 +29,10 @@ namespace MenuShell.View
                 Console.Clear();
                 Console.Write("Search term: >");
                 string searchTerm = Console.ReadLine();
-
-                // press ESC to go back to main menu
-
+                
                 foreach (var user in _users.Where(x => x.Value.UserName.Contains(searchTerm)))
                 {
-                    //Console.Clear();
-                    //Console.WriteLine("Your search term match with: ");
+                   
                     Console.WriteLine(user.Value.UserName);
                     Inlist = true;
                     
@@ -44,7 +41,9 @@ namespace MenuShell.View
                 {
                     Console.Clear();
                     Console.WriteLine($"No users found matching the: {searchTerm}");
+
                     Thread.Sleep(4000);
+
                     var upp = new SearchUsersView(_users);
                     upp.Display();
                 }
@@ -54,12 +53,15 @@ namespace MenuShell.View
 
                 Console.WriteLine($"\n(D)elete or (V)iew user {choice} ? ");
 
+                Console.WriteLine("Press (ESC) to go back to main menu");
+
                 var presKey = Console.ReadKey();
 
                 if (presKey.Key == ConsoleKey.D)
                 {
                     
                     Console.Clear();
+
                     if (_users.ContainsKey(choice))
                     {
                         _users.Remove(choice);
@@ -76,10 +78,17 @@ namespace MenuShell.View
                     if (_users.ContainsKey(choice))
                     {
                         var value = _users[choice];
-                        Console.WriteLine( choice + " " + " " + value);
+                        Console.WriteLine( choice + value);
                         Console.ReadKey();
                     }
         
+                }
+
+                if (presKey.Key == ConsoleKey.Escape) 
+                {
+                    run = false;
+                    var admin = new AdminMainView(_users);
+                    admin.Display();
                 }
 
             } while (run);

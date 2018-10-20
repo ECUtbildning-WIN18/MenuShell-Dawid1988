@@ -21,7 +21,9 @@ namespace MenuShell.Domain
 
         public override string ToString()
         {
-            return UserName + Password + Role;
+            return "\nUserName: " + UserName + "\n" +
+                   "Password: " + Password + "\n" +
+                   "Role: " + Role;
         }
     }
 }

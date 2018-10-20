@@ -24,8 +24,6 @@ namespace MenuShell.View
             
             do
             {
-                // press ESC to go back to main menu
-
                 Console.Clear();
                 Console.WriteLine("# Delete Users\n");
                 foreach (var user in _users)
@@ -33,17 +31,34 @@ namespace MenuShell.View
                     Console.WriteLine(user.Value.UserName);
                 }
                 
-                Console.Write("\nDelete user: >_ ");
+                Console.Write("\nDelete user: > ");
+                
                 var choice = Console.ReadLine();
 
-                if (_users.ContainsKey(choice))
+                Console.WriteLine($"\nDo you want to delete user {choice} (Y)es (N)o, or press (ESC) to go back to main menu\n");
+
+                var presKey = Console.ReadKey();
+
+                if (presKey.Key == ConsoleKey.Y)
                 {
-                    _users.Remove(choice);
+                    if (_users.ContainsKey(choice))
+                    {
+                        _users.Remove(choice);
+                    }
                 }
-                else
+
+                if (presKey.Key == ConsoleKey.N)
                 {
                     runMenu = false;
                 }
+
+                if (presKey.Key == ConsoleKey.Escape)
+                {
+                    runMenu = false;
+                    var admin = new AdminMainView(_users);
+                    admin.Display();
+                }
+                
             } while (runMenu);
 
             Console.ReadLine();

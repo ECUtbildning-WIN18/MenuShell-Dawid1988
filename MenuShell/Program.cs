@@ -17,19 +17,11 @@ namespace MenuShell
             //var login = new LogInView(authenticationService);  unb
 
             //login.Display();  unb
-
             
             var admin = new AdminMainView(users);
 
                 admin.Display();
-
-            
-
-            // TODO: Flytta in i AdminMainView
-            //var add = new AddUserView(users);
-            //var delete = new DeleteUserView();
-            //add.Display();
-            //delete.Display();            
+         
         }
     }
 }

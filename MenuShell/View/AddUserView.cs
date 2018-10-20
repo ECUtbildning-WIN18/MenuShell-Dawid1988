@@ -21,33 +21,36 @@ namespace MenuShell.View
         public void Display()
         {
             bool menuRun = true;
-            
-                do
-                {
-                   Console.Clear();
-                   Console.WriteLine("# Add user\n");
-                   
-                   Console.WriteLine("UserName");
-                   var userName = Console.ReadLine();
 
-                   Console.WriteLine("Password");
-                   var password = Console.ReadLine();
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("# Add user\n");
 
-                   Console.WriteLine("Role");
-                   var role = Console.ReadLine();
+                Console.WriteLine("UserName");
+                var userName = Console.ReadLine();
 
-                   //Console.WriteLine("Is this correct ? (Y)es (N)o");
-                   //var choice = Console.ReadKey(true);
+                Console.WriteLine("Password");
+                var password = Console.ReadLine();
 
+                Console.WriteLine("Role");
+                var role = Console.ReadLine();
+
+                Console.WriteLine("Is this correct ? (Y)es (N)o");
+                var choice = Console.ReadKey();
+
+                if (choice.Key == ConsoleKey.Y)
+                { 
                     var user = new User(userName, password, (Role) Enum.Parse(typeof(Role), role));
 
-                     if (!_users.ContainsKey(user.UserName))
-                     {
-                         _users.Add(user.UserName, user);
-                         menuRun = false;
-                     }
-
-                } while (menuRun);
+                    if (!_users.ContainsKey(user.UserName))
+                    {
+                        _users.Add(user.UserName, user);
+                        menuRun = false;
+                    }
+                }
+                
+        } while (menuRun);
             var main = new AdminMainView(_users);
             main.Display();
         }
