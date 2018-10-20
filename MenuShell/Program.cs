@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MenuShell.Services;
+using MenuShell.View;
 
 namespace MenuShell
 {
@@ -10,6 +7,18 @@ namespace MenuShell
     {
         static void Main(string[] args)
         {
+            var userService = new FakeUserService();
+
+            var users = userService.LoadUsers();
+
+            var authenticationService = new AuthenticationService(users);
+
+            var login = new LogInView(authenticationService);  
+            login.Display();  
+            
+            var admin = new AdminMainView(users);
+            admin.Display();
+         
         }
     }
 }
