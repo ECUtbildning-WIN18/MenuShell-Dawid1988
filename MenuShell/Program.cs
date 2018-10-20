@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using MenuShell.Services;
+﻿using MenuShell.Services;
 using MenuShell.View;
 
 namespace MenuShell
@@ -14,13 +13,11 @@ namespace MenuShell
 
             var authenticationService = new AuthenticationService(users);
 
-            //var login = new LogInView(authenticationService);  unb
-
-            //login.Display();  unb
+            var login = new LogInView(authenticationService);  
+            login.Display();  
             
             var admin = new AdminMainView(users);
-
-                admin.Display();
+            admin.Display();
          
         }
     }

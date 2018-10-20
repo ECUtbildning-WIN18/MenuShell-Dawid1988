@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MenuShell.Domain;
 
 namespace MenuShell.View
 {
     class AddUserView 
     {
-        //Dictionary<string, Users> usersList = new Dictionary<string, Users>();
-
         private readonly IDictionary<string, User> _users;
 
         public AddUserView(IDictionary<string, User> users)
@@ -27,13 +22,13 @@ namespace MenuShell.View
                 Console.Clear();
                 Console.WriteLine("# Add user\n");
 
-                Console.WriteLine("UserName");
+                Console.WriteLine("UserName: ");
                 var userName = Console.ReadLine();
 
-                Console.WriteLine("Password");
+                Console.WriteLine("\nPassword: ");
                 var password = Console.ReadLine();
 
-                Console.WriteLine("Role");
+                Console.WriteLine("\nRole: ");
                 var role = Console.ReadLine();
 
                 Console.WriteLine("Is this correct ? (Y)es (N)o");
@@ -48,6 +43,12 @@ namespace MenuShell.View
                         _users.Add(user.UserName, user);
                         menuRun = false;
                     }
+                }
+                if (choice.Key == ConsoleKey.N)
+                {
+                    menuRun = false;
+                    var add = new AddUserView(_users);
+                    add.Display();
                 }
                 
         } while (menuRun);
